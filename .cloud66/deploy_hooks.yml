@@ -1,5 +1,5 @@
 production: 
  first_thing:
-  - command: curl https://codeload.github.com/ImageMagick/ImageMagick6/tar.gz/6.9.9-51 --output IM.tar.gz -s && tar xvzf IM.tar.gz && cd ImageMagick6-6.9.9-51 && ./configure && make && make install -y
+  - command: curl https://codeload.github.com/ImageMagick/ImageMagick6/tar.gz/6.9.9-51 --output IM.tar.gz -s && tar xvzf IM.tar.gz && cd ImageMagick6-6.9.9-51 && ./configure && make && make install
     target: rails
     execute: true
