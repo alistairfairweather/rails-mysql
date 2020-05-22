@@ -1,10 +1,11 @@
 first_thing:
 - target: rails
   execute: true
+  apply_during: build_only 
   inline: |
     #!/usr/bin/env bash
-
-    local image_magick_version="6.9.9-51"
+    set -e
+    image_magick_version="6.9.9-51"
     echo "Installing ImageMagick v$image_magick_version"
 
     echo "1. Fetching Tarball"
