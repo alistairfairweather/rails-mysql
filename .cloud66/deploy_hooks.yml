@@ -1,5 +1,27 @@
-production: 
- first_thing:
-  - command: curl https://codeload.github.com/ImageMagick/ImageMagick6/tar.gz/6.9.9-51 --output IM.tar.gz -s && tar xvzf IM.tar.gz && cd ImageMagick6-6.9.9-51 && ./configure && make && make install
-    target: rails
-    execute: true
+first_thing:
+- target: rails
+  execute: true
+  inline: |
+    #!/usr/bin/env bash
+
+    local image_magick_version="6.9.9-51"
+    echo "Installing ImageMagick v$image_magick_version"
+
+    echo "1. Fetching Tarball"
+    curl -sL https://codeload.github.com/ImageMagick/ImageMagick6/tar.gz/"$image_magick_version" --output /tmp/IM_"$image_magick_version".tar.gz 
+
+    echo "2. Extracting Tarball"
+    cd /tmp
+    tar -xvzf IM_"$image_magick_version".tar.gz
+
+    echo "3. Building ImageMagick"
+    cd ImageMagick6-"$image_magick_version"
+    ./configure
+    make
+    make install 
+
+    echo "4. Tidying up"
+    rm -f /tmp/IM_"$image_magick_version".tar.gz
+    rm -rf /tmp/ImageMagick6-"$image_magick_version"
+
+    echo "ImageMagick install complete!"
